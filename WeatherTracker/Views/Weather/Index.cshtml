@@ -1,0 +1,26 @@
+@model WeatherTracker.Models.WeatherResponse
+
+@{
+    ViewData["Title"] = "Weather Tracker";
+}
+
+<h2>Real-Time Weather Tracker</h2>
+
+<form method="post" asp-controller="Weather" asp-action="GetWeather">
+    <input type="text" name="city" placeholder="Enter city name" required />
+    <button type="submit">Get Weather</button>
+</form>
+
+@if (Model != null)
+{
+    <div>
+        <h3>Weather in @Model.Location.Name, @Model.Location.Country</h3>
+        <p>Temperature: @Model.Current.TemperatureC °C</p>
+        <p>Condition: @Model.Current.Condition.Text</p>
+    </div>
+}
+
+@if (ViewBag.Error != null)
+{
+    <p style="color: red;">@ViewBag.Error</p>
+}
