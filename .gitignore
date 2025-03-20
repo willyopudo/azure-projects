@@ -1,0 +1,39 @@
+# Ignore build outputs
+bin/
+obj/
+publish/
+out/
+
+# User-specific files
+*.user
+*.userosscache
+*.suo
+*.sln.docstates
+
+# Logs
+*.log
+logs/
+
+# Visual Studio Code
+.vscode/
+*.code-workspace
+
+# Local settings
+local.settings.json
+
+# Dependency directories
+packages/
+.vs/
+.idea/
+
+# Rider
+.idea/
+*.sln.iml
+
+# DotNet specific
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# Azure Functions
+funcpack/

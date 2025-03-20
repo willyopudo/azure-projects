@@ -6,18 +6,14 @@ using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
-using System.Text.Json;
-using Azure.Messaging.EventHubs;
-using Azure.Messaging.EventHubs.Producer;
+using Newtonsoft.Json;
+using Microsoft.Azure.WebJobs.Extensions.EventHubs;
 
 namespace WeatherAlertApp2
 {
-    public  class WeatherFunction
+    public class WeatherFunction
     {
         private readonly ILogger<WeatherFunction> _logger;
-        private const string eventHubConnectionString = "conn";
-        private const string eventHubName = "weatherEventHub01001";
-
         public WeatherFunction(ILogger<WeatherFunction> logger)
         {
             _logger = logger;
@@ -25,16 +21,19 @@ namespace WeatherAlertApp2
 
         [FunctionName("WeatherFunction")]
         public async Task<IActionResult> Run(
-            [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)] HttpRequest req)
+            [HttpTrigger(AuthorizationLevel.Function, "post", Route = null)] HttpRequest req,
+            [EventHub("weathereventhub01001", Connection = "wilfLearnEventHubNamespace_RootManageSharedAccessKey_EVENTHUB")] IAsyncCollector<string> outputEvents)
         {
             _logger.LogInformation("Processing weather data...");
+            // Force assembly reference
+            var _ = typeof(Azure.Core.Serialization.JsonObjectSerializer);
 
             string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
-            var weatherData = JsonSerializer.Deserialize<WeatherPayload>(requestBody);
+            var weatherData = JsonConvert.DeserializeObject<WeatherPayload>(requestBody);
 
             if (weatherData?.Weather == "Sunny" || weatherData?.Weather == "Partly cloudy")
             {
-                await SendToEventHub(requestBody);
+               await outputEvents.AddAsync(requestBody); // Sending to Event Hub
             }
 
             return weatherData != null
@@ -42,14 +41,7 @@ namespace WeatherAlertApp2
             : new BadRequestObjectResult("Please pass correct payload in the request body.");
         }
 
-        private async Task SendToEventHub(string payload)
-        {
-            await using var producerClient = new EventHubProducerClient(eventHubConnectionString, eventHubName);
-            using EventDataBatch eventBatch = await producerClient.CreateBatchAsync();
-            eventBatch.TryAdd(new EventData(payload));
-            await producerClient.SendAsync(eventBatch);
-            _logger.LogInformation("Sent to Event Hub: " + payload);
-        }
+        
     }
 
     public class WeatherPayload

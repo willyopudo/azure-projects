@@ -1,9 +1,14 @@
 /workspaces/codespaces-blank/WeatherTracker/publish/WeatherTracker
+/workspaces/codespaces-blank/WeatherTracker/publish/publish/publish/web.config
 /workspaces/codespaces-blank/WeatherTracker/publish/publish/web.config
 /workspaces/codespaces-blank/WeatherTracker/publish/appsettings.Development.json
 /workspaces/codespaces-blank/WeatherTracker/publish/appsettings.json
 /workspaces/codespaces-blank/WeatherTracker/publish/publish/appsettings.Development.json
 /workspaces/codespaces-blank/WeatherTracker/publish/publish/appsettings.json
+/workspaces/codespaces-blank/WeatherTracker/publish/publish/publish/appsettings.Development.json
+/workspaces/codespaces-blank/WeatherTracker/publish/publish/publish/appsettings.json
+/workspaces/codespaces-blank/WeatherTracker/publish/publish/publish/WeatherTracker.deps.json
+/workspaces/codespaces-blank/WeatherTracker/publish/publish/publish/WeatherTracker.runtimeconfig.json
 /workspaces/codespaces-blank/WeatherTracker/publish/publish/WeatherTracker.deps.json
 /workspaces/codespaces-blank/WeatherTracker/publish/publish/WeatherTracker.runtimeconfig.json
 /workspaces/codespaces-blank/WeatherTracker/publish/WeatherTracker.dll

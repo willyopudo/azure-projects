@@ -50,3 +50,9 @@
 /workspaces/codespaces-blank/WeatherTracker/bin/Release/net8.0/publish/appsettings.json
 /workspaces/codespaces-blank/WeatherTracker/bin/Release/net8.0/publish/WeatherTracker.deps.json
 /workspaces/codespaces-blank/WeatherTracker/bin/Release/net8.0/publish/WeatherTracker.runtimeconfig.json
+/workspaces/codespaces-blank/WeatherTracker/bin/Release/net8.0/publish/publish/web.config
+/workspaces/codespaces-blank/WeatherTracker/bin/Release/net8.0/publish/publish/appsettings.Development.json
+/workspaces/codespaces-blank/WeatherTracker/bin/Release/net8.0/publish/publish/appsettings.json
+/workspaces/codespaces-blank/WeatherTracker/bin/Release/net8.0/publish/publish/WeatherTracker.deps.json
+/workspaces/codespaces-blank/WeatherTracker/bin/Release/net8.0/publish/publish/WeatherTracker.runtimeconfig.json
+/workspaces/codespaces-blank/WeatherTracker/obj/Release/net8.0/WeatherTracker.sourcelink.json
