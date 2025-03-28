@@ -36,7 +36,7 @@ namespace WeatherTracker.Controllers
                 using (var client = new HttpClient())
                 {
                     var content = new StringContent(JsonConvert.SerializeObject(new { weather = weather.Current.Condition.Text, city = city }), Encoding.UTF8, "application/json");
-                    await client.PostAsync("func conn", content);
+                    await client.PostAsync("app-service-url", content);
                 }
                 
                 Console.WriteLine(weather.Current.Condition.Text);
