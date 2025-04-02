@@ -1,7 +1,12 @@
 using Azure.Storage.Blobs;
 using Microsoft.Azure.Cosmos;
+using DotNetEnv;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// Load environment variables from .env file
+DotNetEnv.Env.Load();
+
 
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -9,17 +14,13 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddControllers();
-// builder.Services.AddSingleton<CloudBlobClient>(provider =>
-// {
-//     var storageAccount = CloudStorageAccount.Parse("Your_Azure_Blob_Connection_String");
-//     return storageAccount.CreateCloudBlobClient();
-// });
-// builder.Services.AddSingleton<CosmosClient>(new CosmosClient("Your_CosmosDB_Connection_String"));
-// Register BlobServiceClient
-builder.Services.AddSingleton(x => new BlobServiceClient(builder.Configuration.GetConnectionString("AzureBlobStorage")));
 
-// Register CosmosClient
-builder.Services.AddSingleton(x => new CosmosClient(builder.Configuration.GetConnectionString("CosmosDb")));
+// Configure BlobServiceClient and CosmosClient using environment variables
+builder.Services.AddSingleton(new BlobServiceClient(Environment.GetEnvironmentVariable("AZURE_BLOB_STORAGE_CONNECTION_STRING")));
+builder.Services.AddSingleton(new CosmosClient(
+    Environment.GetEnvironmentVariable("COSMOS_DB_ACCOUNT_ENDPOINT"),
+    Environment.GetEnvironmentVariable("COSMOS_DB_ACCOUNT_KEY")
+));
 
 
 // Configure CORS to allow all origins
