@@ -1,0 +1,10 @@
+@model List<string>
+
+<h1>Messages from Azure Service Bus</h1>
+
+<ul>
+    @foreach (var message in Model)
+    {
+        <li>@message</li>
+    }
+</ul>

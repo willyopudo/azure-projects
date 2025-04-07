@@ -1,19 +1,23 @@
 import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
+import Home from "./components/Home";
 import UploadFiles from "./components/upload-files.component";
+import NotificationSubscriber from "./components/NotificationSubscriber";
 
 function App() {
   return (
-    <div className="container" style={{ width: "600px" }}>
-      <div style={{ margin: "20px" }}>
-        <h3>Wilfusr File Uploader Azure</h3>
-        <h4>React upload Files</h4>
-      </div>
-
-      <UploadFiles />
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />}>
+          <Route path="file-uploader" element={<UploadFiles />} />
+          <Route path="notification-subscriber" element={<NotificationSubscriber />} />
+        </Route>
+      </Routes>
+    </Router>
   );
 }
 
