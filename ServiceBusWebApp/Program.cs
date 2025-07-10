@@ -11,8 +11,8 @@ builder.Services.AddSingleton<ServiceBusService>();
 var app = builder.Build();
 
 // Start the Service Bus listener
-var serviceBusService = app.Services.GetRequiredService<ServiceBusService>();
-_ = Task.Run(() => serviceBusService.StartListeningAsync());
+//var serviceBusService = app.Services.GetRequiredService<ServiceBusService>();
+//_ = Task.Run(() => serviceBusService.StartListeningAsync());
 
 // Configure the HTTP request pipeline
 if (!app.Environment.IsDevelopment())

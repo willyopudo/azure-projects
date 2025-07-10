@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace ServiceBusWebApp.Pages;
 
@@ -16,8 +17,12 @@ public class MessagesModel : PageModel
         _logger = logger;
     }
 
-    public void OnGet()
+    public async Task OnGetAsync()
     {
-        //Messages = _serviceBusService.ReceiveMessagesAsync().Result;
+        // Fetch initial messages synchronously for rendering
+        Messages = await _serviceBusService.FetchUnconsumedMessagesAsync();
+
+        // Start listening for new messages in the background
+        _ = Task.Run(() => _serviceBusService.StartListeningAsync());
     }
 }

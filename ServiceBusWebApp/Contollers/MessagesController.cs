@@ -11,7 +11,7 @@ public class MessagesController : Controller
 
     // public async Task<IActionResult> Messages()
     // {
-    //     var messages = await _serviceBusService.ReceiveMessagesAsync();
+    //     var messages = _serviceBusService.FetchUnconsumedMessagesAsync().Result;
     //     return View(messages);
     // }
 }
